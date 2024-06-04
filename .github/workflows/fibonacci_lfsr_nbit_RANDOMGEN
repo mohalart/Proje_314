@@ -1,17 +1,15 @@
 module fibonacci_lfsr_nbit(
-  input  clk,
-  input  rst_n,
+  input  clk,  // clock
+  input  rst_n, //active low reset
 
-  output reg [4:0] data
+  output reg [4:0] data // 5 bit output 
 );
 
-wire feedback = data[4] ^ data[1] ;
+wire feedback = data[4] ^ data[1] ; // change data 4 to n 
 
 always @(posedge clk or negedge rst_n)
   if (~rst_n) 
     data <= 4'hf;
   else
-    data <= {data[3:0], feedback} ;
-
+    data <= {data[3:0], feedback} ; // change data 3 to n-1 
 endmodule
-
